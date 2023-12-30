@@ -103,8 +103,9 @@ type Costco struct {
 
 func (c Costco) RunCharges(wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 1000)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 	}
 	wg.Done()
 }
@@ -113,7 +114,8 @@ func (c *Costco) RunChargesMT(mutex *sync.Mutex, wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
 		mutex.Lock()
 		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 		mutex.Unlock()
 	}
 	wg.Done()
@@ -125,8 +127,9 @@ type Target struct {
 
 func (c Target) RunCharges(wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 1000)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 	}
 	wg.Done()
 }
@@ -134,8 +137,9 @@ func (c Target) RunCharges(wg *sync.WaitGroup) {
 func (c *Target) RunChargesMT(mutex *sync.Mutex, wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
 		mutex.Lock()
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 1000)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 		mutex.Unlock()
 	}
 	wg.Done()
@@ -147,8 +151,9 @@ type CVS struct {
 
 func (c CVS) RunCharges(wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		time.Sleep(time.Millisecond * 1050)
+		balance := c.Bank.GetBalance(account.ID)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 	}
 	wg.Done()
 }
@@ -156,8 +161,9 @@ func (c CVS) RunCharges(wg *sync.WaitGroup) {
 func (c *CVS) RunChargesMT(mutex *sync.Mutex, wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
 		mutex.Lock()
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		time.Sleep(time.Millisecond * 1050)
+		balance := c.Bank.GetBalance(account.ID)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 		mutex.Unlock()
 	}
 	wg.Done()
@@ -169,8 +175,9 @@ type GuitarCenter struct {
 
 func (c GuitarCenter) RunCharges(wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 2000)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 	}
 	wg.Done()
 }
@@ -178,8 +185,9 @@ func (c GuitarCenter) RunCharges(wg *sync.WaitGroup) {
 func (c *GuitarCenter) RunChargesMT(mutex *sync.Mutex, wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
 		mutex.Lock()
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 2000)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 		mutex.Unlock()
 	}
 	wg.Done()
@@ -191,8 +199,9 @@ type Starbucks struct {
 
 func (c Starbucks) RunCharges(wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 1500)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 	}
 	wg.Done()
 }
@@ -200,8 +209,9 @@ func (c Starbucks) RunCharges(wg *sync.WaitGroup) {
 func (c *Starbucks) RunChargesMT(mutex *sync.Mutex, wg *sync.WaitGroup) {
 	for _, account := range c.Accounts {
 		mutex.Lock()
-		time.Sleep(time.Millisecond * 100)
-		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal)
+		balance := c.Bank.GetBalance(account.ID)
+		time.Sleep(time.Millisecond * 1500)
+		c.Bank.ApplyTransaction(account.ID, account.ChargeTotal + balance)
 		mutex.Unlock()
 	}
 	wg.Done()
